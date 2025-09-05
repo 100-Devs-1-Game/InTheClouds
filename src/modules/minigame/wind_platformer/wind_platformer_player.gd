@@ -22,20 +22,11 @@ var dive_control: float = 0.0
 var air_control_bonus: float = 0.0
 var jump_speed_bonus: float = 0.0
 var double_jump_factor: float = 0.0
-var burning_feet_duration: float = 0.0:
-	set(f):
-		burning_feet_duration = f
-		if f > 0:
-			_can_use_burning_feet = true
 
 var _is_running: bool = false
 var _is_on_ground: bool = false
 var _can_double_jump: bool = false
 var _double_jump_ctr: int
-var _can_use_burning_feet: bool
-
-@onready var head: Polygon2D = %Head
-@onready var hat: Polygon2D = %Hat
 
 @onready var game: WindPlatformerMinigame = get_parent()
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -45,10 +36,7 @@ var _can_use_burning_feet: bool
 @onready var audio_jump: AudioStreamPlayer = $"Audio/AudioStreamPlayer Jump"
 @onready var audio_land: AudioStreamPlayer = $"Audio/AudioStreamPlayer Land"
 @onready var audio_wind: AudioStreamPlayer = $"Audio/AudioStreamPlayer Wind"
-@onready var audio_burning_feet: AudioStreamPlayer = $"Audio/AudioStreamPlayer Burning Feet"
 
-@onready var burning_feet_particles: CPUParticles2D = $"CPUParticles Burning Feet"
-@onready var burning_feet_timer: Timer = $"Timer Burning Feet"
 
 
 func _ready() -> void:
@@ -77,7 +65,6 @@ func _physics_process(delta: float) -> void:
 		if not current_cloud:
 			current_cloud = platform
 		elif current_cloud != platform:
-			current_cloud.fade()
 			current_cloud = platform
 
 		# means current cloud faded while standing on it?
@@ -85,7 +72,6 @@ func _physics_process(delta: float) -> void:
 			_is_on_ground = false
 
 	elif current_cloud != null:
-		current_cloud.fade()
 		current_cloud = null
 
 	var hor_input = Input.get_axis("left", "right")
@@ -119,13 +105,12 @@ func _physics_process(delta: float) -> void:
 			velocity.x, hor_input * max_speed, acceleration * move_speed_factor * delta
 		)
 
-
-	if Input.is_action_pressed("down") and _has_burning_feet():
-		var collision := move_and_collide(Vector2(velocity.x, max(10, velocity.y)) * delta, true)
-		if collision:
-			if collision.get_collider() is WindPlatformerMinigameCloudPlatform:
-				var cloud: WindPlatformerMinigameCloudPlatform = collision.get_collider()
-				cloud.fade()
+	#if Input.is_action_pressed("down") and _has_burning_feet():
+		#var collision := move_and_collide(Vector2(velocity.x, max(10, velocity.y)) * delta, true)
+		#if collision:
+			#if collision.get_collider() is WindPlatformerMinigameCloudPlatform:
+				#var cloud: WindPlatformerMinigameCloudPlatform = collision.get_collider()
+				#cloud.fade()
 
 	jump_logic()
 
@@ -213,12 +198,3 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func _on_animated_sprite_animation_finished() -> void:
 	animated_sprite.play("falling")
-
-
-func _on_timer_burning_feet_timeout() -> void:
-	burning_feet_particles.emitting = false
-	audio_burning_feet.stop()
-
-
-func _has_burning_feet() -> bool:
-	return not burning_feet_timer.is_stopped()
