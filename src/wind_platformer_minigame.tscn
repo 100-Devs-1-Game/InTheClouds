@@ -84,6 +84,8 @@ expand_mode = 2
 position = Vector2(960, 50)
 air_control = 25.0
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [node name="MultiMeshInstance2D" type="MultiMeshInstance2D" parent="."]
 modulate = Color(1, 1, 1, 0.541176)
 multimesh = SubResource("MultiMesh_cj4w2")

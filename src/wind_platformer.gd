@@ -15,9 +15,11 @@ var countdown_bonus: int
 @onready var multi_mesh_instance: MultiMeshInstance2D = $MultiMeshInstance2D
 @onready var cloud_spawner: WindPlatformerMinigameCloudSpawner = $"Cloud Spawner"
 @onready var borders: StaticBody2D = $Borders
+@onready var camera: Camera2D = $Camera2D
 
 
 func _ready() -> void:
+	camera.position= player.position
 	_initialize()
 	_start()
 
@@ -43,6 +45,7 @@ func _input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	draw_particles(delta)
+	camera.position.y= min(1080 / 2, player.position.y)
 
 
 func _physics_process(delta: float) -> void:
