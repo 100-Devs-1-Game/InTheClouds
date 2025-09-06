@@ -1,0 +1,124 @@
+[gd_scene load_steps=6 format=3 uid="uid://c25710m5piayt"]
+
+[ext_resource type="Script" uid="uid://8qds6y63jyqr" path="res://menu/menu.gd" id="1_6nwqt"]
+[ext_resource type="Texture2D" uid="uid://c4r401bs0liq8" path="res://assets/skybox_2_skn.png" id="1_j0t7f"]
+[ext_resource type="Texture2D" uid="uid://c7qjpmetxcsuu" path="res://assets/title/cloud_title.png" id="2_g18jx"]
+[ext_resource type="Texture2D" uid="uid://bh431sbepdi3j" path="res://assets/title/cloud.png" id="4_pbjm4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nwqt"]
+bg_color = Color(0.6, 0.6, 0.933333, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_6nwqt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_j0t7f")
+
+[node name="Menu" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6nwqt")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Menu"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Menu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 30
+
+[node name="Button" type="Button" parent="CanvasLayer/Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 50
+text = "Play"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 50
+text = " Credits "
+
+[node name="Button3" type="Button" parent="CanvasLayer/Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 50
+text = "Quit"
+
+[node name="Clouds" type="Node2D" parent="CanvasLayer"]
+modulate = Color(0.728822, 0.728822, 0.728822, 1)
+
+[node name="Cloud" type="Sprite2D" parent="CanvasLayer/Clouds"]
+position = Vector2(372, 884)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_pbjm4")
+
+[node name="Cloud2" type="Sprite2D" parent="CanvasLayer/Clouds"]
+position = Vector2(216, 387)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_pbjm4")
+
+[node name="Cloud3" type="Sprite2D" parent="CanvasLayer/Clouds"]
+position = Vector2(1413, 872)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_pbjm4")
+
+[node name="Cloud4" type="Sprite2D" parent="CanvasLayer/Clouds"]
+position = Vector2(1711, 564)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_pbjm4")
+
+[node name="Cloud5" type="Sprite2D" parent="CanvasLayer/Clouds"]
+position = Vector2(1491, 260)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_pbjm4")
+
+[node name="Cloud6" type="Sprite2D" parent="CanvasLayer/Clouds"]
+position = Vector2(464, 170)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_pbjm4")
+
+[node name="Cloud7" type="Sprite2D" parent="CanvasLayer/Clouds"]
+position = Vector2(667, 668)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_pbjm4")
+
+[node name="Cloud8" type="Sprite2D" parent="CanvasLayer/Clouds"]
+position = Vector2(1752, 958)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_pbjm4")
+
+[node name="CloudTitle" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(960, 540)
+texture = ExtResource("2_g18jx")
