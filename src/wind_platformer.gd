@@ -82,7 +82,7 @@ func add_particle(pos: Vector2):
 
 
 func spawn_random_particle():
-	add_particle(Vector2(randi() % size.x, randi() % size.y))
+	add_particle(Vector2(randi() % size.x, randi() % size.y) + Vector2(0, player.position.y - camera.get_viewport_rect().size.y / 2.0))
 
 
 func on_particle_destroyed(particle: WindPlatformerMinigameParticle):
