@@ -32,6 +32,7 @@ func _initialize() -> void:
 
 func _start():
 	cloud_spawner.start()
+	Global.elapsed_game_time= 0.0
 
 
 func _input(event: InputEvent) -> void:
@@ -46,7 +47,8 @@ func _input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	draw_particles(delta)
 	camera.position.y= min(1080 / 2, player.position.y)
-
+	Global.elapsed_game_time+= delta
+	
 
 func _physics_process(delta: float) -> void:
 	if Engine.get_physics_frames() % 2 == 0:

@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	position.x += speed * delta
+	position += Vector2(speed * delta, Global.elapsed_game_time * delta)
 
 
 func set_parts_areas_active(b: bool):
