@@ -13,11 +13,18 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	position += Vector2(speed * delta, Global.elapsed_game_time * delta)
+	if speed < 0 and position.x < -100 :
+		queue_free()
+	elif speed > 0 and position.x > get_viewport_rect().size.x + 100:
+		queue_free()
+	elif position.y > get_viewport_rect().size.y + 100:
+		queue_free()
 
 
 func set_parts_areas_active(b: bool):
 	if not parts:
 		return
+	
 	for part: WindPlatformerMinigameCloudPart in parts.get_children():
 		part.active = b
 
