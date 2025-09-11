@@ -67,13 +67,25 @@ func _on_timer_timeout() -> void:
 
 	var rect:= build_spawn_rect()
 	var offset:= 50
+	var wide_y:= 500
 
 	prints(player.position.y, rect)
 
-	if RngUtils.chance100(50):
+	var dir:= 0
+	# chance 15 build top - wide, bottom - wide
+	if RngUtils.chance100(50) and player.position.y < -y_range / 2:
+		if RngUtils.chance100(50):
+			rect.size.y= wide_y
+		else:
+			rect.position.y+= rect.size.y - wide_y
+			rect.size.y= wide_y
+	elif RngUtils.chance100(50):
 		rect.size.x= offset
-		spawn_cloud(rect, 1)
+		dir= 1
 	else:
 		rect.position.x= rect.position.x + rect.size.x - offset
 		rect.size.x= offset
-		spawn_cloud(rect, -1)
+		dir= -1
+
+	while clouds_node.get_child_count() < max_clouds:
+		spawn_cloud(rect, dir)
