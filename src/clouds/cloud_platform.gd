@@ -1,10 +1,13 @@
 class_name WindPlatformerMinigameCloudPlatform
 extends AnimatableBody2D
 
-var speed := randf_range(-50, 50)
+@export var parts_scene: PackedScene
 
-@onready var parts: Node2D = $Parts
 @onready var full_cloud: Sprite2D = $FullCloud
+
+var speed := randf_range(-50, 50)
+var parts: Node2D
+
 
 
 func _ready() -> void:
@@ -22,12 +25,17 @@ func _physics_process(delta: float) -> void:
 
 
 func set_parts_areas_active(b: bool):
-	if not parts:
-		return
+	if b:
+		if not parts:
+			parts= parts_scene.instantiate()
+			add_child(parts)
+			full_cloud.hide()
+	else:
+		if parts:
+			parts.queue_free()
+			parts= null
+			full_cloud.show()
 	
-	for part: WindPlatformerMinigameCloudPart in parts.get_children():
-		part.active = b
-
 
 func _on_player_detection_area_body_entered(_body: Node2D) -> void:
 	set_parts_areas_active(true)

@@ -1,7 +1,7 @@
 class_name WindPlatformerMinigameCloudPart
 extends Node2D
 
-var active: bool = false
+var active: bool = true
 var query: PhysicsShapeQueryParameters2D
 
 @onready var orig_pos: Vector2 = position

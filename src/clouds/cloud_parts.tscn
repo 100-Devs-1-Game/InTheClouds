@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuqyw5f1xrqgu"]
+
+[ext_resource type="PackedScene" uid="uid://c3djvftk8ecjn" path="res://clouds/cloud_part.tscn" id="1_bfapp"]
+
+[node name="Parts" type="Node2D"]
+
+[node name="CloudPart" parent="." instance=ExtResource("1_bfapp")]
+position = Vector2(-51, 11)
+
+[node name="CloudPart2" parent="." instance=ExtResource("1_bfapp")]
+position = Vector2(-49, 1)
+
+[node name="CloudPart3" parent="." instance=ExtResource("1_bfapp")]
+position = Vector2(-55, -12)
+
+[node name="CloudPart4" parent="." instance=ExtResource("1_bfapp")]
+position = Vector2(-25, -13)
+
+[node name="CloudPart5" parent="." instance=ExtResource("1_bfapp")]
+position = Vector2(-23, 1)
+
+[node name="CloudPart6" parent="." instance=ExtResource("1_bfapp")]
+position = Vector2(-24, 13)
+
+[node name="CloudPart7" parent="." instance=ExtResource("1_bfapp")]
+position = Vector2(6, -12)
+
+[node name="CloudPart8" parent="." instance=ExtResource("1_bfapp")]
+position = Vector2(37, -14)
+
+[node name="CloudPart9" parent="." instance=ExtResource("1_bfapp")]
+position = Vector2(52, -13)
+
+[node name="CloudPart10" parent="." instance=ExtResource("1_bfapp")]
+position = Vector2(9, 4)
+
+[node name="CloudPart11" parent="." instance=ExtResource("1_bfapp")]
+position = Vector2(44, 3)
+
+[node name="CloudPart12" parent="." instance=ExtResource("1_bfapp")]
+position = Vector2(53, 11)
+
+[node name="CloudPart13" parent="." instance=ExtResource("1_bfapp")]
+position = Vector2(17, 14)
+
+[node name="CloudPart14" parent="." instance=ExtResource("1_bfapp")]
+position = Vector2(54, 0)
