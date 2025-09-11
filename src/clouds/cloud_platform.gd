@@ -15,7 +15,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	position += Vector2(speed * delta, Global.elapsed_game_time * delta)
+	var drop_speed: float= sqrt(Global.elapsed_game_time)
+	position += Vector2(speed * delta, drop_speed * delta)
 	if speed < 0 and position.x < -100 :
 		queue_free()
 	elif speed > 0 and position.x > get_viewport_rect().size.x + 100:
