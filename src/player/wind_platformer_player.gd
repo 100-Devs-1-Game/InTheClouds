@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 signal left_screen
 
+@export var debug_mode:= false
+
 @export var move_speed: float = 100.0
 @export var acceleration: float = 100.0
 @export var max_jump_speed: float = 150.0
@@ -45,6 +47,10 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if debug_mode:
+		position+= Input.get_vector("left", "right", "up", "down") * delta * 500
+		return
+	
 	velocity *= (1 - damping * move_speed_factor * delta)
 
 	var prev_on_ground := _is_on_ground
