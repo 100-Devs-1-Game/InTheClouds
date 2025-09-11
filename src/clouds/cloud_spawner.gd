@@ -5,47 +5,31 @@ signal cloud_spawned(cloud: WindPlatformerMinigameCloudPlatform)
 
 @export var cloud_scene: PackedScene
 @export var clouds_node: Node
-@export var initial_clouds: int = 30
+@export var player: WindPlatformerMinigamePlayer
+@export var max_clouds: int = 50
 @export var cloud_velocity_range: Vector2 = Vector2(20, 150)
 
-@export var initial_rect: Rect2 = Rect2(0, 200, 1920, 1000)
-
-var cloud_bonus: int = 0
-
-var _off_screen_spawn_offset := Vector2(0, 200)
-var _off_screen_spawn_size := Vector2(10, 800)
-var _left_rect: Rect2
-var _right_rect: Rect2
+@export var offscreen_x:= Vector2i(-200, 2120)
+@export var y_range:= 2000
+@export var y_despawn_range:= 4000
 
 @onready var timer: Timer = $Timer
 
 
 func _ready() -> void:
 	var viewport := get_viewport_rect().size
-
-	var x_offset: int = 100
-
-	_left_rect = Rect2(
-		_off_screen_spawn_offset - Vector2(x_offset, 0) - Vector2(_off_screen_spawn_size.x, 0),
-		_off_screen_spawn_size
-	)
-	_right_rect = Rect2(
-		_off_screen_spawn_offset + Vector2(viewport.x + x_offset, 0), _off_screen_spawn_size
-	)
+	#var x_offset: int = 100
 
 
 func start() -> void:
-	for i in initial_clouds + cloud_bonus:
-		spawn_cloud(initial_rect)
+	for i in max_clouds:
+		spawn_cloud(build_spawn_rect())
 	timer.start()
 
 
-func spawn_cloud(rect: Rect2, force_direction: int = 0):
-	var pos := Vector2(
-		randf_range(rect.position.x, rect.position.x + rect.size.x),
-		randf_range(rect.position.y, rect.position.y + rect.size.y)
-	)
-
+func spawn_cloud(rect: Rect2i, force_direction: int = 0):
+	var pos= Vector2i(randi_range(rect.position.x, rect.position.x + rect.size.x), randi_range(rect.position.y, rect.position.y + rect.size.y))
+		
 	var cloud: WindPlatformerMinigameCloudPlatform = cloud_scene.instantiate()
 	cloud.position = pos
 	var dir: int = force_direction
@@ -58,11 +42,38 @@ func spawn_cloud(rect: Rect2, force_direction: int = 0):
 	cloud_spawned.emit(cloud)
 
 
+func build_spawn_rect()-> Rect2i:
+	var rect:= Rect2i(Vector2(offscreen_x.x, get_viewport_rect().position.y - y_range / 2),\
+	 Vector2(offscreen_x.y - offscreen_x.x, y_range))
+	
+	rect.position.y+= player.position.y
+	
+	var rect_max_y:= rect.position.y + rect.size.y
+	if rect_max_y > get_viewport_rect().size.y:
+		var delta:= rect_max_y - get_viewport_rect().size.y
+		rect.position.y-= delta / 2
+		rect.size.y-= delta / 2
+
+	return rect
+
+
 func _on_timer_timeout() -> void:
-	if clouds_node.get_child_count() >= initial_clouds + cloud_bonus:
+	for cloud: WindPlatformerMinigameCloudPlatform in clouds_node.get_children():
+		if abs(player.position.y - cloud.position.y) > y_despawn_range:
+			cloud.queue_free()
+		
+	if clouds_node.get_child_count() >= max_clouds:
 		return
 
+	var rect:= build_spawn_rect()
+	var offset:= 50
+
+	prints(player.position.y, rect)
+
 	if RngUtils.chance100(50):
-		spawn_cloud(_left_rect, 1)
+		rect.size.x= offset
+		spawn_cloud(rect, 1)
 	else:
-		spawn_cloud(_right_rect, -1)
+		rect.position.x= rect.position.x + rect.size.x - offset
+		rect.size.x= offset
+		spawn_cloud(rect, -1)

@@ -6,7 +6,6 @@
 [node name="Cloud Spawner" type="Node2D"]
 script = ExtResource("1_pnlyi")
 cloud_scene = ExtResource("2_tkmho")
-initial_clouds = 0
 cloud_velocity_range = Vector2(10, 50)
 
 [node name="Timer" type="Timer" parent="."]
