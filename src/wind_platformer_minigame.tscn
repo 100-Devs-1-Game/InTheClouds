@@ -45,7 +45,6 @@ normal = Vector2(-1, 0)
 script = ExtResource("1_j01kc")
 wind_noise = SubResource("FastNoiseLite_4orxu")
 size = Vector2i(2000, 1500)
-num_particles = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -85,7 +84,6 @@ expand_mode = 2
 
 [node name="Player" parent="." instance=ExtResource("2_asxaq")]
 position = Vector2(960, 50)
-debug_mode = true
 air_control = 25.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
