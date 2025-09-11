@@ -45,6 +45,7 @@ normal = Vector2(-1, 0)
 script = ExtResource("1_j01kc")
 wind_noise = SubResource("FastNoiseLite_4orxu")
 size = Vector2i(2000, 1500)
+num_particles = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -84,6 +85,7 @@ expand_mode = 2
 
 [node name="Player" parent="." instance=ExtResource("2_asxaq")]
 position = Vector2(960, 50)
+debug_mode = true
 air_control = 25.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -93,9 +95,11 @@ modulate = Color(1, 1, 1, 0.541176)
 multimesh = SubResource("MultiMesh_cj4w2")
 texture = SubResource("GradientTexture1D_cj4w2")
 
-[node name="Cloud Spawner" parent="." node_paths=PackedStringArray("clouds_node") instance=ExtResource("3_h8gjg")]
+[node name="Cloud Spawner" parent="." node_paths=PackedStringArray("clouds_node", "player") instance=ExtResource("3_h8gjg")]
 clouds_node = NodePath("../Platforms")
-initial_clouds = 20
+player = NodePath("../Player")
+max_clouds = 200
+y_range = 6000
 
 [node name="Borders" type="StaticBody2D" parent="."]
 collision_layer = 0
