@@ -20,7 +20,7 @@ func _ready() -> void:
 	cloud_title.show()
 	
 	var duration:= 1.5
-	if SceneLoader.has_return_from_game():
+	if SceneLoader.has_returned_from_game():
 		duration= 0.5
 	
 	var tween:= create_tween()
