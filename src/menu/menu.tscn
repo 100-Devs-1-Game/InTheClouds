@@ -1,25 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://c25710m5piayt"]
+[gd_scene load_steps=9 format=3 uid="uid://c25710m5piayt"]
 
 [ext_resource type="Script" uid="uid://8qds6y63jyqr" path="res://menu/menu.gd" id="1_6nwqt"]
 [ext_resource type="Texture2D" uid="uid://c4r401bs0liq8" path="res://assets/skybox_2_skn.png" id="1_j0t7f"]
 [ext_resource type="Texture2D" uid="uid://c7qjpmetxcsuu" path="res://assets/title/cloud_title.png" id="2_g18jx"]
+[ext_resource type="LabelSettings" uid="uid://buh1igme5fy23" path="res://menu/highscore_label_settings.tres" id="2_v6yed"]
+[ext_resource type="StyleBox" uid="uid://cejery4xidy5b" path="res://styles/panel_stylebox.tres" id="3_juveg"]
 [ext_resource type="FontFile" uid="uid://d1jakbjo1y2ry" path="res://external_assets/font/Modak-Regular.ttf" id="3_svuvw"]
 [ext_resource type="Texture2D" uid="uid://bh431sbepdi3j" path="res://assets/title/cloud.png" id="4_pbjm4"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nwqt"]
-bg_color = Color(0.6, 0.6, 0.933333, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_blend = true
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="LabelSettings" id="LabelSettings_v6yed"]
+font = ExtResource("3_svuvw")
+font_size = 36
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_6nwqt")
+highscore_label_settings = ExtResource("2_v6yed")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -39,7 +34,7 @@ anchor_right = 0.5
 anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_6nwqt")
+theme_override_styles/panel = ExtResource("3_juveg")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Menu"]
 layout_mode = 2
@@ -80,6 +75,37 @@ size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("3_svuvw")
 theme_override_font_sizes/font_size = 50
 text = "Quit"
+
+[node name="Highscores" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.99
+anchor_right = 0.01
+anchor_bottom = 0.99
+offset_top = -176.0
+offset_right = 227.0
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("3_juveg")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Highscores"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Highscores/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="CanvasLayer/Highscores/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Highscores"
+label_settings = SubResource("LabelSettings_v6yed")
+
+[node name="VBoxContainer Highscores" type="VBoxContainer" parent="CanvasLayer/Highscores/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="Clouds" type="Node2D" parent="CanvasLayer"]
 modulate = Color(0.728822, 0.728822, 0.728822, 1)
