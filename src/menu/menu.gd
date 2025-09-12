@@ -65,3 +65,15 @@ func update_highscores():
 		label.label_settings= highscore_label_settings
 		label.text= str(i + 1, ": ", s)
 		vbox_highscores.add_child(label)
+
+
+func _on_button_play_pressed() -> void:
+	SceneLoader.enter_game()
+
+
+func _on_button_credits_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_button_quit_pressed() -> void:
+	get_tree().quit()

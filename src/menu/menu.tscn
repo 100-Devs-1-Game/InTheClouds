@@ -52,7 +52,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/separation = 30
 
-[node name="Button" type="Button" parent="CanvasLayer/Menu/MarginContainer/VBoxContainer Buttons"]
+[node name="Button Play" type="Button" parent="CanvasLayer/Menu/MarginContainer/VBoxContainer Buttons"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 6
@@ -60,7 +60,7 @@ theme_override_fonts/font = ExtResource("3_svuvw")
 theme_override_font_sizes/font_size = 50
 text = "Play"
 
-[node name="Button2" type="Button" parent="CanvasLayer/Menu/MarginContainer/VBoxContainer Buttons"]
+[node name="Button Credits" type="Button" parent="CanvasLayer/Menu/MarginContainer/VBoxContainer Buttons"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 6
@@ -68,7 +68,7 @@ theme_override_fonts/font = ExtResource("3_svuvw")
 theme_override_font_sizes/font_size = 50
 text = " Credits "
 
-[node name="Button3" type="Button" parent="CanvasLayer/Menu/MarginContainer/VBoxContainer Buttons"]
+[node name="Button Quit" type="Button" parent="CanvasLayer/Menu/MarginContainer/VBoxContainer Buttons"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 6
@@ -154,3 +154,7 @@ texture = ExtResource("4_pbjm4")
 visible = false
 position = Vector2(960, 540)
 texture = ExtResource("2_g18jx")
+
+[connection signal="pressed" from="CanvasLayer/Menu/MarginContainer/VBoxContainer Buttons/Button Play" to="." method="_on_button_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/MarginContainer/VBoxContainer Buttons/Button Credits" to="." method="_on_button_credits_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/MarginContainer/VBoxContainer Buttons/Button Quit" to="." method="_on_button_quit_pressed"]
