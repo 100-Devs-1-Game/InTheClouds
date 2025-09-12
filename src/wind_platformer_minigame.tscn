@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bytqv7h0iow3u"]
+[gd_scene load_steps=24 format=3 uid="uid://bytqv7h0iow3u"]
 
 [ext_resource type="Script" uid="uid://dd2udc5jvkrq8" path="res://wind_platformer.gd" id="1_j01kc"]
 [ext_resource type="PackedScene" uid="uid://b5gx7hrc8phfj" path="res://player/wind_platformer_player.tscn" id="2_asxaq"]
@@ -13,6 +13,7 @@
 [ext_resource type="Resource" uid="uid://dr0vlcs0axoo5" path="res://upgrades/air_control.tres" id="10_og3fw"]
 [ext_resource type="Resource" uid="uid://ctmsiq3dwk21a" path="res://upgrades/double_jump.tres" id="11_70alp"]
 [ext_resource type="Resource" uid="uid://8eayrr1vwaii" path="res://upgrades/dive.tres" id="12_yjiy5"]
+[ext_resource type="PackedScene" uid="uid://nmjebbmtj4ct" path="res://ui/ui.tscn" id="14_og3fw"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4orxu"]
 frequency = 0.002
@@ -127,5 +128,7 @@ shape = SubResource("WorldBoundaryShape2D_asxaq")
 stream = ExtResource("5_f7nst")
 volume_db = -5.073
 autoplay = true
+
+[node name="UI" parent="." instance=ExtResource("14_og3fw")]
 
 [connection signal="left_screen" from="Player" to="." method="_on_player_left_screen"]
