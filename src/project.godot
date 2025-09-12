@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="In the Clouds"
-run/main_scene="uid://bytqv7h0iow3u"
+run/main_scene="uid://c0twg0h6pabur"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [autoload]
