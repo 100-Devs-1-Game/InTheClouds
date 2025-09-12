@@ -10,6 +10,9 @@ extends Node2D
 
 
 func _ready():
+	for upgrade in upgrade_pool:
+		upgrade.level= 0
+
 	for i in max_simultaneous:
 		spawn()
 
