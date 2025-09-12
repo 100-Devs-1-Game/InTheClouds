@@ -30,7 +30,7 @@ func load_highscores():
 
 func save_highscores():
 	var file:= FileAccess.open(SAVE_FILE, FileAccess.WRITE)
-	file.store_var(JSON.stringify(highscores))
+	file.store_string(JSON.stringify(highscores))
 	file.close()
 
 
@@ -40,4 +40,5 @@ func post_highscore(secs: float):
 	highscores.reverse()
 	while highscores.size() > NUM_SCORES:
 		highscores.pop_back()
+	
 	save_highscores()
