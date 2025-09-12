@@ -38,6 +38,7 @@ var _double_jump_ctr: int
 @onready var audio_jump: AudioStreamPlayer = $"Audio/AudioStreamPlayer Jump"
 @onready var audio_land: AudioStreamPlayer = $"Audio/AudioStreamPlayer Land"
 @onready var audio_wind: AudioStreamPlayer = $"Audio/AudioStreamPlayer Wind"
+@onready var audio_pickup: AudioStreamPlayer = $"Audio/AudioStreamPlayer Pickup"
 
 
 
@@ -201,6 +202,7 @@ func animation_and_audio_logic():
 func pick_up(pickup: Pickup):
 	pickup.upgrade.level+= 1
 	pickup.upgrade.apply_effect(self)
+	audio_pickup.play()
 	pickup.queue_free()
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b5gx7hrc8phfj"]
+[gd_scene load_steps=30 format=3 uid="uid://b5gx7hrc8phfj"]
 
 [ext_resource type="Script" uid="uid://d2exw2nueiy4m" path="res://player/wind_platformer_player.gd" id="1_hjopy"]
 [ext_resource type="Texture2D" uid="uid://bg1q5342vtyof" path="res://assets/character/dive/000.png" id="2_7xqbe"]
@@ -26,6 +26,7 @@
 [ext_resource type="AudioStream" uid="uid://db2amhq563rqf" path="res://assets/sfx/sfx_cloud_jump_02.ogg" id="24_hdmq6"]
 [ext_resource type="AudioStream" uid="uid://crdpuwen62s16" path="res://assets/sfx/sfx_cloud_land_02.ogg" id="25_uom4x"]
 [ext_resource type="AudioStream" uid="uid://bgr4m8cg5dp5h" path="res://assets/sfx/lp_wind_calm_woodz.ogg" id="26_uom4x"]
+[ext_resource type="AudioStream" uid="uid://cjpeg46cy2ant" path="res://external_assets/sfx/pickup.ogg" id="27_icn10"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dkh7d"]
 size = Vector2(32, 48)
@@ -162,6 +163,9 @@ stream = ExtResource("25_uom4x")
 [node name="AudioStreamPlayer Wind" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("26_uom4x")
 autoplay = true
+
+[node name="AudioStreamPlayer Pickup" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("27_icn10")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_animation_finished"]
