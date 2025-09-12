@@ -8,6 +8,7 @@ script = ExtResource("1_v8vbo")
 [node name="Pickups" type="Node2D" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="spawn"]
