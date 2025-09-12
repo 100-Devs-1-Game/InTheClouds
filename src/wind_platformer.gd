@@ -16,6 +16,8 @@ var countdown_bonus: int
 @onready var cloud_spawner: WindPlatformerMinigameCloudSpawner = $"Cloud Spawner"
 @onready var borders: StaticBody2D = $Borders
 @onready var camera: Camera2D = $Camera2D
+@onready var audio_game_over: AudioStreamPlayer = $"AudioStream GameOver"
+
 
 
 func _ready() -> void:
@@ -106,5 +108,11 @@ func _on_player_left_screen() -> void:
 
 
 func game_over():
+	set_process(false)
+	set_physics_process(false)
+	player.collision_mask= 0
+	audio_game_over.play()
+
+	await get_tree().create_timer(1).timeout
+
 	SceneLoader.enter_menu()
-	#get_tree().quit()
