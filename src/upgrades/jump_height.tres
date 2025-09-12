@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=2 format=3 uid="uid://c88an4bd12eq5"]
+
+[ext_resource type="Script" uid="uid://dcanllx7huvsv" path="res://player/upgrade.gd" id="1_7kygv"]
+
+[resource]
+script = ExtResource("1_7kygv")
+text = "Higher"
+effect = 1
+max_level = 20
+metadata/_custom_type_script = "uid://dcanllx7huvsv"

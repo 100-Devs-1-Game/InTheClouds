@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=2 format=3 uid="uid://ctmsiq3dwk21a"]
+
+[ext_resource type="Script" uid="uid://dcanllx7huvsv" path="res://player/upgrade.gd" id="1_cff8u"]
+
+[resource]
+script = ExtResource("1_cff8u")
+text = "Double
+Jump"
+effect = 2
+max_level = 10
+metadata/_custom_type_script = "uid://dcanllx7huvsv"

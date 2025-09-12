@@ -64,7 +64,7 @@ func _physics_process(delta: float) -> void:
 	#if _is_on_ground and not get_last_slide_collision():
 	#push_warning("On ground without slide collision")
 
-	if _is_on_ground and get_last_slide_collision() != null:
+	if _is_on_ground and get_last_slide_collision() != null and get_last_slide_collision().get_collider().collision_layer == 2:
 		var platform: WindPlatformerMinigameCloudPlatform = (
 			get_last_slide_collision().get_collider()
 		)
@@ -196,6 +196,12 @@ func animation_and_audio_logic():
 		audio_run.stop()
 
 	audio_run.pitch_scale = clampf(abs(velocity.x) * 0.01, 1, 3)
+
+
+func pick_up(pickup: Pickup):
+	pickup.upgrade.level+= 1
+	pickup.upgrade.apply_effect(self)
+	pickup.queue_free()
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
