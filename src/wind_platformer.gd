@@ -106,4 +106,5 @@ func _on_player_left_screen() -> void:
 
 
 func game_over():
-	get_tree().quit()
+	SceneLoader.enter_menu()
+	#get_tree().quit()
