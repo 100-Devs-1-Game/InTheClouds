@@ -4,6 +4,8 @@
 
 [node name="Pickup Spawner" type="Node2D"]
 script = ExtResource("1_v8vbo")
+upgrade_pool = null
+max_simultaneous = null
 
 [node name="Pickups" type="Node2D" parent="."]
 

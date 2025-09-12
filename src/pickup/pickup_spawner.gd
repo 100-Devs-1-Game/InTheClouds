@@ -22,11 +22,17 @@ func spawn():
 		var child= pickups_node.get_child(0)
 		pickups_node.remove_child(child)
 		child.queue_free()
-		
+	
+	var spawned_dict: Dictionary
+	for pickup: Pickup in pickups_node.get_children():
+		if not spawned_dict.has(pickup.upgrade):
+			spawned_dict[pickup.upgrade]= 0
+		spawned_dict[pickup.upgrade]+= 1
+	
 	var arr:= upgrade_pool.duplicate()
 	arr.shuffle()
 	for upgrade: Upgrade in arr:
-		if upgrade.can_spawn():
+		if upgrade.can_spawn(spawned_dict):
 			var pickup: Pickup= pickup_scene.instantiate()
 			pickup.position= get_rand_pos()
 			pickups_node.add_child(pickup)

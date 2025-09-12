@@ -10,8 +10,11 @@ enum Effect { MOVE_SPEED, JUMP_HEIGHT, DOUBLE_JUMP, DIVE, AIR_CONTROL}
 var level: int= 0
 
 
-func can_spawn()-> bool:
-	return level < max_level
+func can_spawn(dict: Dictionary)-> bool:
+	var existing:= 0
+	if dict.has(self):
+		existing+= dict[self]
+	return level + existing < max_level
 
 
 func apply_effect(player: WindPlatformerMinigamePlayer):
