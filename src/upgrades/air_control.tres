@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_j5xsi")
-text = "Control"
+text = "Air
+Control"
 effect = 4
 max_level = 20
 metadata/_custom_type_script = "uid://dcanllx7huvsv"
