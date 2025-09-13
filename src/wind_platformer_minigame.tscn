@@ -94,7 +94,6 @@ expand_mode = 2
 
 [node name="Player" parent="." instance=ExtResource("2_asxaq")]
 position = Vector2(960, 50)
-debug_mode = true
 air_control = 25.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -107,7 +106,7 @@ texture = SubResource("GradientTexture1D_cj4w2")
 [node name="Cloud Spawner" parent="." node_paths=PackedStringArray("clouds_node", "player") instance=ExtResource("3_h8gjg")]
 clouds_node = NodePath("../Platforms")
 player = NodePath("../Player")
-max_clouds = 1000
+max_clouds = 700
 y_range = 20000
 y_despawn_range = 6000
 abstract_threshold_y = 1200
