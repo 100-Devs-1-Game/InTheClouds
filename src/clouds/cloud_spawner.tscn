@@ -10,6 +10,5 @@ cloud_velocity_range = Vector2(10, 50)
 y_despawn_range = 3000
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

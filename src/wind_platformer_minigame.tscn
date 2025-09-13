@@ -107,12 +107,14 @@ texture = SubResource("GradientTexture1D_cj4w2")
 [node name="Cloud Spawner" parent="." node_paths=PackedStringArray("clouds_node", "player") instance=ExtResource("3_h8gjg")]
 clouds_node = NodePath("../Platforms")
 player = NodePath("../Player")
-max_clouds = 200
-y_range = 6000
+max_clouds = 1000
+y_range = 20000
+y_despawn_range = 6000
+abstract_threshold_y = 1200
 
 [node name="Pickup Spawner" parent="." instance=ExtResource("5_hf1gh")]
-pickup_scene = ExtResource("6_t760n")
 upgrade_pool = Array[ExtResource("7_bdem6")]([ExtResource("8_rb0w2"), ExtResource("9_2gj11"), ExtResource("10_og3fw"), ExtResource("11_70alp"), ExtResource("12_yjiy5")])
+pickup_scene = ExtResource("6_t760n")
 
 [node name="Borders" type="StaticBody2D" parent="."]
 collision_layer = 4

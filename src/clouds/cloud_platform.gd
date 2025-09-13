@@ -15,13 +15,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var drop_speed: float= sqrt(Global.elapsed_game_time)
-	position += Vector2(speed * delta, drop_speed * delta)
-	if speed < 0 and position.x < -100 :
-		queue_free()
-	elif speed > 0 and position.x > get_viewport_rect().size.x + 100:
-		queue_free()
-	elif position.y > get_viewport_rect().size.y + 100:
+	position= calculate_cloud_position(position, speed, delta)
+
+	if out_of_bounds(position, speed, get_viewport_rect()):
 		queue_free()
 
 
@@ -36,7 +32,21 @@ func set_parts_areas_active(b: bool):
 			parts.queue_free()
 			parts= null
 			full_cloud.show()
-	
+
+
+static func calculate_cloud_position(pos: Vector2, vel: float, delta: float):
+	var drop_speed: float= sqrt(Global.elapsed_game_time)
+	return pos + Vector2(vel * delta, drop_speed * delta)
+
+
+static func out_of_bounds(pos: Vector2, vel: float, viewport: Rect2)-> bool:
+	if vel < 0 and pos.x < -100 :
+		return true
+	elif vel > 0 and pos.x > viewport.size.x + 100:
+		return true
+	elif pos.y > viewport.size.y + 100:
+		return true
+	return false
 
 func _on_player_detection_area_body_entered(_body: Node2D) -> void:
 	set_parts_areas_active(true)

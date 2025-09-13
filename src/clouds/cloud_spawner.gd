@@ -1,7 +1,15 @@
 class_name WindPlatformerMinigameCloudSpawner
 extends Node2D
 
-signal cloud_spawned(cloud: WindPlatformerMinigameCloudPlatform)
+class AbstractCloud:
+	var position: Vector2
+	var speed: float
+
+	func _init(_position: Vector2, _speed: float):
+		position= _position
+		speed= _speed
+
+
 
 @export var cloud_scene: PackedScene
 @export var clouds_node: Node
@@ -12,8 +20,12 @@ signal cloud_spawned(cloud: WindPlatformerMinigameCloudPlatform)
 @export var offscreen_x:= Vector2i(-200, 2120)
 @export var y_range:= 2000
 @export var y_despawn_range:= 4000
+@export var abstract_threshold_y:= 1500
 
 @onready var timer: Timer = $Timer
+
+var abstract_clouds: Array[AbstractCloud]
+
 
 
 func _ready() -> void:
@@ -29,17 +41,20 @@ func start() -> void:
 
 func spawn_cloud(rect: Rect2i, force_direction: int = 0):
 	var pos= Vector2i(randi_range(rect.position.x, rect.position.x + rect.size.x), randi_range(rect.position.y, rect.position.y + rect.size.y))
-		
-	var cloud: WindPlatformerMinigameCloudPlatform = cloud_scene.instantiate()
-	cloud.position = pos
+
 	var dir: int = force_direction
 	if dir == 0:
 		dir = [-1, 1].pick_random()
+	var speed: float= randf_range(cloud_velocity_range.x, cloud_velocity_range.y) * dir
+		
+	if abs(pos.y - player.position.y) < abstract_threshold_y:
+		var cloud: WindPlatformerMinigameCloudPlatform = cloud_scene.instantiate()
+		cloud.position = pos
+		cloud.speed = speed
 
-	cloud.speed = randf_range(cloud_velocity_range.x, cloud_velocity_range.y) * dir
-
-	clouds_node.add_child(cloud)
-	cloud_spawned.emit(cloud)
+		clouds_node.add_child(cloud)
+	else:
+		abstract_clouds.append(AbstractCloud.new(pos, speed))
 
 
 func build_spawn_rect()-> Rect2i:
@@ -57,29 +72,48 @@ func build_spawn_rect()-> Rect2i:
 	return rect
 
 
+func simulate_abstract_clouds(delta: float):
+	var stopwatch:= PerformanceUtils.Stopwatch.new()
+	var ctr:= 0
+	for cloud in abstract_clouds.duplicate():
+		cloud.position= WindPlatformerMinigameCloudPlatform.calculate_cloud_position(cloud.position, cloud.speed, delta)
+		if WindPlatformerMinigameCloudPlatform.out_of_bounds(cloud.position, cloud.speed, get_viewport_rect()):
+			abstract_clouds.erase(cloud)
+		if ctr > 50:
+			stopwatch.pause= true
+			await get_tree().process_frame
+			stopwatch.pause= false
+	
+	stopwatch.stop("Simulate abstract clouds")
+
+
 func _on_timer_timeout() -> void:
+	var stopwatch:= PerformanceUtils.Stopwatch.new()
+	
+	for abs_cloud in abstract_clouds.duplicate():
+		if abs(player.position.y - abs_cloud.position.y) < abstract_threshold_y:
+			var cloud: WindPlatformerMinigameCloudPlatform = cloud_scene.instantiate()
+			cloud.position = abs_cloud.position
+			cloud.speed = abs_cloud.speed
+			clouds_node.add_child(cloud)
+			abstract_clouds.erase(abs_cloud)
+
 	for cloud: WindPlatformerMinigameCloudPlatform in clouds_node.get_children():
-		if abs(player.position.y - cloud.position.y) > y_despawn_range:
+		if abs(player.position.y - cloud.position.y) > abstract_threshold_y + 100:
+			abstract_clouds.append(AbstractCloud.new(cloud.position, cloud.speed))
 			cloud.queue_free()
 		
-	if clouds_node.get_child_count() >= max_clouds:
+	if get_total_clouds() >= max_clouds:
 		return
 
 	var rect:= build_spawn_rect()
 	var offset:= 50
 	var wide_y:= 500
 
-	prints(player.position.y, rect)
+	#prints(player.position.y, rect)
 
 	var dir:= 0
-	# chance 15 build top - wide, bottom - wide
-	if RngUtils.chance100(50) and player.position.y < -y_range / 2:
-		if RngUtils.chance100(50):
-			rect.size.y= wide_y
-		else:
-			rect.position.y+= rect.size.y - wide_y
-			rect.size.y= wide_y
-	elif RngUtils.chance100(50):
+	if RngUtils.chance100(50):
 		rect.size.x= offset
 		dir= 1
 	else:
@@ -87,5 +121,12 @@ func _on_timer_timeout() -> void:
 		rect.size.x= offset
 		dir= -1
 
-	while clouds_node.get_child_count() < max_clouds:
+	while get_total_clouds() < max_clouds:
 		spawn_cloud(rect, dir)
+
+	stopwatch.stop("Spawn cloud performance")
+	simulate_abstract_clouds.call_deferred(timer.wait_time)
+
+
+func get_total_clouds()-> int:
+	return clouds_node.get_child_count() + abstract_clouds.size()
