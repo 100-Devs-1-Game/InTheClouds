@@ -20,7 +20,7 @@ func enter_menu():
 
 
 func enter_game():
-	get_tree().change_scene_to_packed(game_scene)
+	get_tree().change_scene_to_packed.call_deferred(game_scene)
 
 
 func has_returned_from_game()-> bool:
