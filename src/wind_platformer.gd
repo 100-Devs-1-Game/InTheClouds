@@ -48,6 +48,8 @@ func _input(event: InputEvent) -> void:
 				PerformanceUtils.TrackAverage.dump("draw particles")
 				PerformanceUtils.TrackAverage.dump("tick particles")
 				get_tree().quit()
+			KEY_ESCAPE:
+				game_over(true)
 
 
 func _process(delta: float) -> void:
@@ -111,12 +113,13 @@ func _on_player_left_screen() -> void:
 	game_over()
 
 
-func game_over():
-	set_process(false)
-	set_physics_process(false)
-	player.collision_mask= 0
-	audio_game_over.play()
+func game_over(instant: bool= false):
+	if not instant:
+		set_process(false)
+		set_physics_process(false)
+		player.collision_mask= 0
+		audio_game_over.play()
 
-	await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(1).timeout
 
 	SceneLoader.enter_menu()
