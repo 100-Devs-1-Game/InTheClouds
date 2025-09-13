@@ -5,6 +5,7 @@ extends Node2D
 @export var size: Vector2i = Vector2i(2000, 1100)
 
 @export var num_particles: int = 1200
+@export var debug_disable_particles: bool= false
 
 
 var wind_arr: Dictionary
@@ -21,6 +22,9 @@ var countdown_bonus: int
 
 
 func _ready() -> void:
+	if debug_disable_particles:
+		num_particles= 0
+
 	camera.position= player.position
 	_initialize()
 	_start()
