@@ -98,6 +98,8 @@ func _on_timer_timeout() -> void:
 			clouds_node.add_child(cloud)
 			abstract_clouds.erase(abs_cloud)
 
+	await get_tree().process_frame
+
 	for cloud: WindPlatformerMinigameCloudPlatform in clouds_node.get_children():
 		if abs(player.position.y - cloud.position.y) > abstract_threshold_y + 100:
 			abstract_clouds.append(AbstractCloud.new(cloud.position, cloud.speed))
