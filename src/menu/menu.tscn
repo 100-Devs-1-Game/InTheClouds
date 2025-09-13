@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c25710m5piayt"]
+[gd_scene load_steps=10 format=3 uid="uid://c25710m5piayt"]
 
 [ext_resource type="Script" uid="uid://8qds6y63jyqr" path="res://menu/menu.gd" id="1_6nwqt"]
 [ext_resource type="Texture2D" uid="uid://c4r401bs0liq8" path="res://assets/skybox_2_skn.png" id="1_j0t7f"]
@@ -7,6 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://cejery4xidy5b" path="res://styles/panel_stylebox.tres" id="3_juveg"]
 [ext_resource type="FontFile" uid="uid://d1jakbjo1y2ry" path="res://external_assets/font/Modak-Regular.ttf" id="3_svuvw"]
 [ext_resource type="Texture2D" uid="uid://bh431sbepdi3j" path="res://assets/title/cloud.png" id="4_pbjm4"]
+[ext_resource type="PackedScene" uid="uid://dskofl7vare0c" path="res://menu/settings.tscn" id="6_s4hbh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v6yed"]
 font = ExtResource("3_svuvw")
@@ -17,14 +18,7 @@ script = ExtResource("1_6nwqt")
 highscore_label_settings = ExtResource("2_v6yed")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_j0t7f")
+layer = 100
 
 [node name="Menu" type="PanelContainer" parent="CanvasLayer"]
 anchors_preset = -1
@@ -59,6 +53,14 @@ size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("3_svuvw")
 theme_override_font_sizes/font_size = 50
 text = "Play"
+
+[node name="Button Settings" type="Button" parent="CanvasLayer/Menu/MarginContainer/VBoxContainer Buttons"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("3_svuvw")
+theme_override_font_sizes/font_size = 50
+text = "Settings"
 
 [node name="Button Credits" type="Button" parent="CanvasLayer/Menu/MarginContainer/VBoxContainer Buttons"]
 layout_mode = 2
@@ -107,54 +109,70 @@ label_settings = SubResource("LabelSettings_v6yed")
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Clouds" type="Node2D" parent="CanvasLayer"]
+[node name="Settings" parent="CanvasLayer" instance=ExtResource("6_s4hbh")]
+visible = false
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_j0t7f")
+
+[node name="Clouds" type="Node2D" parent="CanvasLayer2"]
+unique_name_in_owner = true
 modulate = Color(0.728822, 0.728822, 0.728822, 1)
 
-[node name="Cloud" type="Sprite2D" parent="CanvasLayer/Clouds"]
+[node name="Cloud" type="Sprite2D" parent="CanvasLayer2/Clouds"]
 position = Vector2(372, 884)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("4_pbjm4")
 
-[node name="Cloud2" type="Sprite2D" parent="CanvasLayer/Clouds"]
+[node name="Cloud2" type="Sprite2D" parent="CanvasLayer2/Clouds"]
 position = Vector2(216, 387)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_pbjm4")
 
-[node name="Cloud3" type="Sprite2D" parent="CanvasLayer/Clouds"]
+[node name="Cloud3" type="Sprite2D" parent="CanvasLayer2/Clouds"]
 position = Vector2(1413, 872)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("4_pbjm4")
 
-[node name="Cloud4" type="Sprite2D" parent="CanvasLayer/Clouds"]
+[node name="Cloud4" type="Sprite2D" parent="CanvasLayer2/Clouds"]
 position = Vector2(1711, 564)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_pbjm4")
 
-[node name="Cloud5" type="Sprite2D" parent="CanvasLayer/Clouds"]
+[node name="Cloud5" type="Sprite2D" parent="CanvasLayer2/Clouds"]
 position = Vector2(1491, 260)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_pbjm4")
 
-[node name="Cloud6" type="Sprite2D" parent="CanvasLayer/Clouds"]
+[node name="Cloud6" type="Sprite2D" parent="CanvasLayer2/Clouds"]
 position = Vector2(464, 170)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("4_pbjm4")
 
-[node name="Cloud7" type="Sprite2D" parent="CanvasLayer/Clouds"]
+[node name="Cloud7" type="Sprite2D" parent="CanvasLayer2/Clouds"]
 position = Vector2(602, 668)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_pbjm4")
 
-[node name="Cloud8" type="Sprite2D" parent="CanvasLayer/Clouds"]
+[node name="Cloud8" type="Sprite2D" parent="CanvasLayer2/Clouds"]
 position = Vector2(1752, 958)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_pbjm4")
 
-[node name="CloudTitle" type="Sprite2D" parent="CanvasLayer"]
+[node name="CloudTitle" type="Sprite2D" parent="CanvasLayer2"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(960, 540)
 texture = ExtResource("2_g18jx")
 
 [connection signal="pressed" from="CanvasLayer/Menu/MarginContainer/VBoxContainer Buttons/Button Play" to="." method="_on_button_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/MarginContainer/VBoxContainer Buttons/Button Settings" to="." method="_on_button_settings_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/MarginContainer/VBoxContainer Buttons/Button Credits" to="." method="_on_button_credits_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/MarginContainer/VBoxContainer Buttons/Button Quit" to="." method="_on_button_quit_pressed"]

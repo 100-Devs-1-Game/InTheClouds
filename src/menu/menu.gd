@@ -2,11 +2,12 @@ extends Node2D
 
 @export var highscore_label_settings: LabelSettings
 
-@onready var cloud_title: Sprite2D = $CanvasLayer/CloudTitle
+@onready var cloud_title: Sprite2D = %CloudTitle
 @onready var menu: PanelContainer = $CanvasLayer/Menu
-@onready var clouds: Node2D = $CanvasLayer/Clouds
+@onready var clouds: Node2D = %Clouds
 @onready var buttons_container: VBoxContainer = %"VBoxContainer Buttons"
 @onready var vbox_highscores: VBoxContainer = %"VBoxContainer Highscores"
+@onready var settings: MenuSettings = $CanvasLayer/Settings
 
 
 func _ready() -> void:
@@ -77,3 +78,7 @@ func _on_button_credits_pressed() -> void:
 
 func _on_button_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_button_settings_pressed() -> void:
+	settings.open()

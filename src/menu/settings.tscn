@@ -1,0 +1,97 @@
+[gd_scene load_steps=5 format=3 uid="uid://dskofl7vare0c"]
+
+[ext_resource type="StyleBox" uid="uid://cejery4xidy5b" path="res://styles/panel_stylebox.tres" id="1_fqw17"]
+[ext_resource type="Script" uid="uid://c5rrox70raqwr" path="res://menu/settings.gd" id="2_oksnb"]
+[ext_resource type="FontFile" uid="uid://d1jakbjo1y2ry" path="res://external_assets/font/Modak-Regular.ttf" id="2_qxoij"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oksnb"]
+font = ExtResource("2_qxoij")
+font_size = 30
+
+[node name="Settings" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_fqw17")
+script = ExtResource("2_oksnb")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 30
+columns = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Fullscreen"
+label_settings = SubResource("LabelSettings_oksnb")
+
+[node name="CheckBox Fullscreen" type="CheckBox" parent="MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Volume"
+label_settings = SubResource("LabelSettings_oksnb")
+
+[node name="HSlider Volume" type="HSlider" parent="MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Low Perfomance Mode"
+label_settings = SubResource("LabelSettings_oksnb")
+
+[node name="CheckBox2 Low Performance" type="CheckBox" parent="MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button Back" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_qxoij")
+theme_override_font_sizes/font_size = 30
+text = "Back"
+
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/CheckBox Fullscreen" to="." method="_on_check_box_fullscreen_toggled"]
+[connection signal="drag_ended" from="MarginContainer/VBoxContainer/GridContainer/HSlider Volume" to="." method="_on_h_slider_volume_drag_ended"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/CheckBox2 Low Performance" to="." method="_on_check_box_2_low_performance_toggled"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button Back" to="." method="_on_button_back_pressed"]

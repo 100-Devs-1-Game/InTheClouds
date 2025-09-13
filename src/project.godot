@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 Global="*res://global/global.gd"
 SceneLoader="*res://global/scene loader/scene_loader.tscn"
 SaveManager="*res://global/save_manager.gd"
+GameSettings="*res://global/game_settings.gd"
 
 [display]
 
