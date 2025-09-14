@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c25710m5piayt"]
+[gd_scene load_steps=11 format=3 uid="uid://c25710m5piayt"]
 
 [ext_resource type="Script" uid="uid://8qds6y63jyqr" path="res://menu/menu.gd" id="1_6nwqt"]
 [ext_resource type="Texture2D" uid="uid://c4r401bs0liq8" path="res://assets/skybox_2_skn.png" id="1_j0t7f"]
@@ -7,7 +7,6 @@
 [ext_resource type="StyleBox" uid="uid://cejery4xidy5b" path="res://styles/panel_stylebox.tres" id="3_juveg"]
 [ext_resource type="FontFile" uid="uid://d1jakbjo1y2ry" path="res://external_assets/font/Modak-Regular.ttf" id="3_svuvw"]
 [ext_resource type="Texture2D" uid="uid://bh431sbepdi3j" path="res://assets/title/cloud.png" id="4_pbjm4"]
-[ext_resource type="Script" uid="uid://3ohgcwwc46mp" path="res://components/credits_parser/credits_parser.gd" id="6_6fswf"]
 [ext_resource type="PackedScene" uid="uid://dskofl7vare0c" path="res://menu/settings.tscn" id="6_s4hbh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v6yed"]
@@ -210,8 +209,6 @@ scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("6_6fswf")
-credits_path = "res://contributors.txt"
 
 [node name="Button Back" type="Button" parent="CanvasLayer/Credits/MarginContainer/VBoxContainer"]
 layout_mode = 2
