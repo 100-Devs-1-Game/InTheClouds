@@ -64,7 +64,7 @@ func update_highscores():
 			s= "---"
 
 		label.label_settings= highscore_label_settings
-		label.text= str(i + 1, ": ", s)
+		label.text= str(i + 1, ".  ", s)
 		vbox_highscores.add_child(label)
 
 
