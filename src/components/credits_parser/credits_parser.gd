@@ -20,6 +20,10 @@ var tc_header_font_size:int
 
 
 func _ready() -> void:
+	if not FileAccess.file_exists(credits_path):
+		push_error("Can't find credits file")
+		return
+
 	load_credits(FileAccess.open(credits_path, FileAccess.READ))
 
 
