@@ -9,6 +9,7 @@ extends Node2D
 @onready var vbox_highscores: VBoxContainer = %"VBoxContainer Highscores"
 @onready var settings: MenuSettings = $CanvasLayer/Settings
 @onready var instructions: PanelContainer = $CanvasLayer/Instructions
+@onready var credits: PanelContainer = $CanvasLayer/Credits
 
 
 
@@ -79,7 +80,7 @@ func _on_button_instructions_pressed() -> void:
 
 
 func _on_button_credits_pressed() -> void:
-	pass # Replace with function body.
+	credits.show()
 
 
 func _on_button_quit_pressed() -> void:
@@ -92,3 +93,7 @@ func _on_button_settings_pressed() -> void:
 
 func _on_instructions_button_back_pressed() -> void:
 	instructions.hide()
+
+
+func _on_credits_button_back_pressed() -> void:
+	credits.hide()

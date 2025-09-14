@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c25710m5piayt"]
+[gd_scene load_steps=12 format=3 uid="uid://c25710m5piayt"]
 
 [ext_resource type="Script" uid="uid://8qds6y63jyqr" path="res://menu/menu.gd" id="1_6nwqt"]
 [ext_resource type="Texture2D" uid="uid://c4r401bs0liq8" path="res://assets/skybox_2_skn.png" id="1_j0t7f"]
@@ -7,6 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://cejery4xidy5b" path="res://styles/panel_stylebox.tres" id="3_juveg"]
 [ext_resource type="FontFile" uid="uid://d1jakbjo1y2ry" path="res://external_assets/font/Modak-Regular.ttf" id="3_svuvw"]
 [ext_resource type="Texture2D" uid="uid://bh431sbepdi3j" path="res://assets/title/cloud.png" id="4_pbjm4"]
+[ext_resource type="Script" uid="uid://3ohgcwwc46mp" path="res://components/credits_parser/credits_parser.gd" id="6_6fswf"]
 [ext_resource type="PackedScene" uid="uid://dskofl7vare0c" path="res://menu/settings.tscn" id="6_s4hbh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v6yed"]
@@ -17,6 +18,7 @@ font_size = 36
 line_spacing = -15.0
 font = ExtResource("3_svuvw")
 font_size = 60
+font_color = Color(0.757141, 0.501167, 0.328341, 1)
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_6nwqt")
@@ -159,11 +161,59 @@ Use DOWN / S to dive ( fall faster )
 
 The longer you play the faster the clouds fall
 Make sure not to fall all the way down!
-
+Take advantage of the wind currents
 Collect Pickups to boost your stats"
 label_settings = SubResource("LabelSettings_s4hbh")
 
 [node name="Button Back" type="Button" parent="CanvasLayer/Instructions/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_svuvw")
+theme_override_font_sizes/font_size = 60
+text = "Back"
+
+[node name="Credits" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -48.0
+offset_right = 60.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("3_juveg")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Credits"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/MarginContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Credits/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/table_odd_row_bg = Color(0.820676, 0.559242, 0.404114, 1)
+theme_override_colors/default_color = Color(0.757141, 0.501167, 0.328341, 1)
+theme_override_fonts/normal_font = ExtResource("3_svuvw")
+theme_override_font_sizes/normal_font_size = 50
+text = "
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_6fswf")
+credits_path = "res://contributors.txt"
+
+[node name="Button Back" type="Button" parent="CanvasLayer/Credits/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_svuvw")
@@ -236,3 +286,4 @@ texture = ExtResource("2_g18jx")
 [connection signal="pressed" from="CanvasLayer/Menu/MarginContainer/VBoxContainer Buttons/Button Credits" to="." method="_on_button_credits_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/MarginContainer/VBoxContainer Buttons/Button Quit" to="." method="_on_button_quit_pressed"]
 [connection signal="pressed" from="CanvasLayer/Instructions/MarginContainer/VBoxContainer/Button Back" to="." method="_on_instructions_button_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/Credits/MarginContainer/VBoxContainer/Button Back" to="." method="_on_credits_button_back_pressed"]
