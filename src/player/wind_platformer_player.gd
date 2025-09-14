@@ -20,7 +20,7 @@ var current_cloud: WindPlatformerMinigameCloudPlatform
 var current_jump_speed: float
 
 var move_speed_factor: float = 1.0
-var dive_control: float = 0.0
+var dive_control: float = 0.1
 var air_control_bonus: float = 0.0
 var jump_speed_bonus: float = 0.0
 var double_jump_factor: float = 0.0

@@ -26,7 +26,7 @@ func apply_effect(player: WindPlatformerMinigamePlayer):
 		Effect.DOUBLE_JUMP:
 			player.double_jump_factor= level / 10.0
 		Effect.DIVE:
-			player.dive_control= level / 10.0
+			player.dive_control= level / 10.0 + 0.1
 		Effect.AIR_CONTROL:
 			player.air_control_bonus= level / 10.0
 
