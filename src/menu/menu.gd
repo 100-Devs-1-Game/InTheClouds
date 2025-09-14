@@ -8,6 +8,8 @@ extends Node2D
 @onready var buttons_container: VBoxContainer = %"VBoxContainer Buttons"
 @onready var vbox_highscores: VBoxContainer = %"VBoxContainer Highscores"
 @onready var settings: MenuSettings = $CanvasLayer/Settings
+@onready var instructions: PanelContainer = $CanvasLayer/Instructions
+
 
 
 func _ready() -> void:
@@ -72,6 +74,10 @@ func _on_button_play_pressed() -> void:
 	SceneLoader.enter_game()
 
 
+func _on_button_instructions_pressed() -> void:
+	instructions.show()
+
+
 func _on_button_credits_pressed() -> void:
 	pass # Replace with function body.
 
@@ -82,3 +88,7 @@ func _on_button_quit_pressed() -> void:
 
 func _on_button_settings_pressed() -> void:
 	settings.open()
+
+
+func _on_instructions_button_back_pressed() -> void:
+	instructions.hide()
