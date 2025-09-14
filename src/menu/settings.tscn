@@ -69,6 +69,21 @@ size_flags_vertical = 4
 max_value = 1.0
 step = 0.05
 
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Music"
+label_settings = SubResource("LabelSettings_oksnb")
+
+[node name="CheckBox Music" type="CheckBox" parent="MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+icon_alignment = 1
+expand_icon = true
+
 [node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Low Perfomance Mode"
@@ -93,5 +108,6 @@ text = "Back"
 
 [connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/CheckBox Fullscreen" to="." method="_on_check_box_fullscreen_toggled"]
 [connection signal="drag_ended" from="MarginContainer/VBoxContainer/GridContainer/HSlider Volume" to="." method="_on_h_slider_volume_drag_ended"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/CheckBox Music" to="." method="_on_check_box_music_toggled"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/CheckBox2 Low Performance" to="." method="_on_check_box_2_low_performance_toggled"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Button Back" to="." method="_on_button_back_pressed"]

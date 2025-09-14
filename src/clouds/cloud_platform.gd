@@ -4,6 +4,7 @@ extends AnimatableBody2D
 @export var parts_scene: PackedScene
 
 @onready var full_cloud: Sprite2D = $FullCloud
+@onready var player_detection_area: Area2D = $"Player Detection Area"
 
 var speed := randf_range(-50, 50)
 var parts: Node2D
@@ -12,6 +13,9 @@ var parts: Node2D
 
 func _ready() -> void:
 	modulate = modulate.darkened(randf_range(0.0, 0.25))
+	if GameSettings.low_perf_mode:
+		player_detection_area.queue_free()
+		set_parts_areas_active(false)
 
 
 func _physics_process(delta: float) -> void:

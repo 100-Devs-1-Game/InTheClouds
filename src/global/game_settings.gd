@@ -11,3 +11,8 @@ var volume: float= 0.5:
 		AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Master"), v)
 
 var low_perf_mode: bool= false
+
+var music: bool= true:
+	set(m):
+		music= m
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), not m)

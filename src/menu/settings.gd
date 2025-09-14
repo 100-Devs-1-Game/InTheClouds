@@ -4,6 +4,7 @@ extends PanelContainer
 @onready var check_box_fullscreen: CheckBox = %"CheckBox Fullscreen"
 @onready var slider_volume: HSlider = %"HSlider Volume"
 @onready var check_box_low_performance: CheckBox = %"CheckBox2 Low Performance"
+@onready var check_box_music: CheckBox = %"CheckBox Music"
 
 
 
@@ -11,6 +12,7 @@ func open():
 	check_box_fullscreen.button_pressed= GameSettings.fullscreen
 	slider_volume.value= GameSettings.volume
 	check_box_low_performance.button_pressed= GameSettings.low_perf_mode
+	check_box_music.button_pressed= GameSettings.music
 	show()
 	
 
@@ -26,5 +28,10 @@ func _on_check_box_2_low_performance_toggled(toggled_on: bool) -> void:
 	GameSettings.low_perf_mode= toggled_on
 
 
+func _on_check_box_music_toggled(toggled_on: bool) -> void:
+	GameSettings.music= toggled_on
+
+
 func _on_button_back_pressed() -> void:
+	SaveManager.save_settings()
 	hide()

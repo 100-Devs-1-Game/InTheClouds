@@ -130,6 +130,7 @@ shape = SubResource("WorldBoundaryShape2D_asxaq")
 stream = ExtResource("5_f7nst")
 volume_db = -5.073
 autoplay = true
+bus = &"Music"
 
 [node name="AudioStream GameOver" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_70alp")
