@@ -8,7 +8,7 @@ const _THEME_TYPE_HEADER:StringName = &"HeaderMedium"
 
 
 @export_file("*.txt") var credits_path:String
-
+@export_file("component_credits.txt") var component_credits:Array[String]
 
 #region Themecache
 var tc_header_font_color:Color
@@ -51,6 +51,21 @@ func load_credits(file:FileAccess) -> void:
 		add_section_header(line)
 		current_section_credits.clear()
 	add_section(current_section_credits)
+	file.close()
+
+	var extra_contributors: PackedStringArray
+	
+	for component_credits_path in component_credits:
+		if not FileAccess.file_exists(component_credits_path):
+			push_error("Couldn't find component credits")
+			return
+			
+		var s:= FileAccess.get_file_as_string(component_credits_path)
+		for contributor in s.split("\r\n", false):
+			extra_contributors.append(contributor)
+			
+	add_section_header("Thanks to:")
+	add_text(", ".join(extra_contributors))
 
 
 func add_section(section_credits:PackedStringArray) -> void:
