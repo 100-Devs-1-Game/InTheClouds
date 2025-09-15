@@ -189,29 +189,28 @@ theme_override_styles/panel = ExtResource("3_juveg")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Credits"]
 layout_mode = 2
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_right = 100
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/MarginContainer"]
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Credits/MarginContainer/VBoxContainer"]
 clip_contents = false
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
-size_flags_vertical = 4
 theme_override_colors/table_odd_row_bg = Color(0.820676, 0.559242, 0.404114, 1)
 theme_override_colors/default_color = Color(0.757141, 0.501167, 0.328341, 1)
+theme_override_constants/line_separation = -15
 theme_override_fonts/normal_font = ExtResource("3_svuvw")
 theme_override_font_sizes/normal_font_size = 50
 text = "
 "
 fit_content = true
-scroll_active = false
-autowrap_mode = 0
 horizontal_alignment = 1
-vertical_alignment = 1
 script = ExtResource("6_6fswf")
 credits_path = "res://contributors.txt"
+component_credits = Array[String](["res://components/credits_parser/component_credits.txt", "res://components/discord_link/component_credits.txt", "res://components/splash_screen/component_credits.txt"])
 
 [node name="Button Back" type="Button" parent="CanvasLayer/Credits/MarginContainer/VBoxContainer"]
 layout_mode = 2
