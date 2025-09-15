@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_dfbhk")
 text = "Dive
-Control"
+Faster"
 effect = 3
 max_level = 20
 metadata/_custom_type_script = "uid://dcanllx7huvsv"

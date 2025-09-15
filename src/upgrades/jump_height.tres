@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_7kygv")
-text = "Higher"
+text = "Jump
+Higher"
 effect = 1
 max_level = 20
 metadata/_custom_type_script = "uid://dcanllx7huvsv"
