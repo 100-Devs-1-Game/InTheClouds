@@ -4,13 +4,12 @@ extends Node
 @export var game_scene: PackedScene
 @export var skip_to_game: bool= false
 
+@onready var splash_screen: SplashScreen = $Splash_Screen
 
 
 func _ready() -> void:
-	if skip_to_game:
+	if skip_to_game and OS.is_debug_build():
 		enter_game()
-	else:
-		enter_menu()
 
 
 func enter_menu():

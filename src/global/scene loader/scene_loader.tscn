@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0twg0h6pabur"]
+[gd_scene load_steps=5 format=3 uid="uid://c0twg0h6pabur"]
 
 [ext_resource type="Script" uid="uid://bna0ktuq2y8d6" path="res://global/scene loader/scene_loader.gd" id="1_rc7hw"]
 [ext_resource type="PackedScene" uid="uid://c25710m5piayt" path="res://menu/menu.tscn" id="2_kd21n"]
 [ext_resource type="PackedScene" uid="uid://bytqv7h0iow3u" path="res://wind_platformer_minigame.tscn" id="3_u1hxf"]
+[ext_resource type="PackedScene" uid="uid://dmhvblnd0l1wr" path="res://components/splash_screen/splash_stamp.tscn" id="4_u1hxf"]
 
 [node name="Scene Loader" type="Node"]
 script = ExtResource("1_rc7hw")
 menu_scene = ExtResource("2_kd21n")
 game_scene = ExtResource("3_u1hxf")
+
+[node name="Splash_Screen" parent="." instance=ExtResource("4_u1hxf")]
+
+[connection signal="finished" from="Splash_Screen" to="." method="enter_menu"]
