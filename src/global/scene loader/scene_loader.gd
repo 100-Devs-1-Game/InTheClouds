@@ -9,6 +9,7 @@ extends Node
 
 func _ready() -> void:
 	if skip_to_game and OS.is_debug_build():
+		splash_screen.queue_free()
 		enter_game()
 
 
