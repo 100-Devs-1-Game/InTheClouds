@@ -139,3 +139,4 @@ stream = ExtResource("14_70alp")
 [node name="UI" parent="." instance=ExtResource("14_og3fw")]
 
 [connection signal="left_screen" from="Player" to="." method="_on_player_left_screen"]
+[connection signal="level_up" from="Player" to="UI" method="show_level_up"]

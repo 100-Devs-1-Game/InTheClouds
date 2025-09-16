@@ -2,6 +2,7 @@ class_name WindPlatformerMinigamePlayer
 extends CharacterBody2D
 
 signal left_screen
+signal level_up(upgrade: Upgrade)
 
 @export var debug_mode:= false
 
@@ -203,6 +204,7 @@ func pick_up(pickup: Pickup):
 	pickup.upgrade.level+= 1
 	pickup.upgrade.apply_effect(self)
 	audio_pickup.play()
+	level_up.emit(pickup.upgrade)
 	pickup.queue_free()
 
 

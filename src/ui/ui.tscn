@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://nmjebbmtj4ct"]
+[gd_scene load_steps=7 format=3 uid="uid://nmjebbmtj4ct"]
 
 [ext_resource type="Script" uid="uid://i0xmg318a6cw" path="res://ui/ui.gd" id="1_ks8t7"]
 [ext_resource type="FontFile" uid="uid://d1jakbjo1y2ry" path="res://external_assets/font/Modak-Regular.ttf" id="1_nb4k0"]
@@ -9,6 +9,15 @@
 font = ExtResource("1_nb4k0")
 font_size = 48
 font_color = Color(0.729052, 0.163546, 0.101064, 1)
+outline_size = 8
+outline_color = Color(0.661081, 0.661081, 0.661081, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ks8t7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wl5ax"]
+font = ExtResource("1_nb4k0")
+font_size = 48
+font_color = Color(0.815686, 0.447059, 0.254902, 1)
 outline_size = 8
 outline_color = Color(0.661081, 0.661081, 0.661081, 1)
 
@@ -36,3 +45,20 @@ layout_mode = 2
 text = "0:01:23"
 label_settings = SubResource("LabelSettings_yjiy5")
 vertical_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ks8t7")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="Label Level Up" type="Label" parent="PanelContainer2/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Dive Control Level  1 / 2"
+label_settings = SubResource("LabelSettings_wl5ax")
