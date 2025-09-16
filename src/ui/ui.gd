@@ -10,7 +10,7 @@ func _process(delta: float) -> void:
 	label_time.text= Utils.get_time_string(secs)
 	
 	if label_level_up.visible:
-		label_level_up.modulate.a-= delta
+		label_level_up.modulate.a-= delta * 0.5
 		if label_level_up.modulate.a <= 0:
 			label_level_up.hide()
 
