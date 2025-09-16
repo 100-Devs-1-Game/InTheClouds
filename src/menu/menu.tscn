@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c25710m5piayt"]
+[gd_scene load_steps=13 format=3 uid="uid://c25710m5piayt"]
 
 [ext_resource type="Script" uid="uid://8qds6y63jyqr" path="res://menu/menu.gd" id="1_6nwqt"]
 [ext_resource type="Texture2D" uid="uid://c4r401bs0liq8" path="res://assets/skybox_2_skn.png" id="1_j0t7f"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bh431sbepdi3j" path="res://assets/title/cloud.png" id="4_pbjm4"]
 [ext_resource type="Script" uid="uid://3ohgcwwc46mp" path="res://components/credits_parser/credits_parser.gd" id="6_6fswf"]
 [ext_resource type="PackedScene" uid="uid://dskofl7vare0c" path="res://menu/settings.tscn" id="6_s4hbh"]
+[ext_resource type="PackedScene" uid="uid://c3cx280f4i76s" path="res://components/discord_link/discord_button.tscn" id="7_bc54p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v6yed"]
 font = ExtResource("3_svuvw")
@@ -218,6 +219,19 @@ size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_svuvw")
 theme_override_font_sizes/font_size = 60
 text = "Back"
+
+[node name="VBoxContainer" parent="CanvasLayer" instance=ExtResource("7_bc54p")]
+anchors_preset = -1
+anchor_left = 0.99
+anchor_top = 0.99
+anchor_right = 0.99
+anchor_bottom = 0.99
+offset_left = -305.0
+offset_top = -327.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
