@@ -204,7 +204,7 @@ theme_override_colors/table_odd_row_bg = Color(0.820676, 0.559242, 0.404114, 1)
 theme_override_colors/default_color = Color(0.757141, 0.501167, 0.328341, 1)
 theme_override_constants/line_separation = -15
 theme_override_fonts/normal_font = ExtResource("3_svuvw")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 40
 text = "
 "
 fit_content = true
